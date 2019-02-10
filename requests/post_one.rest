@@ -5,5 +5,5 @@ Content-Type: application/json
     "title": "Devilish blog",
     "author": "Not satan",
     "jotain": "www.he.ll",
-    "likes": "999"
+    "likes": "9991"
 }
