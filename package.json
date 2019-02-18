@@ -12,6 +12,7 @@
   "author": "tomko",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
@@ -20,6 +21,7 @@
     "mongoose": "^5.4.11"
   },
   "devDependencies": {
+    "acorn": "^6.1.0",
     "eslint": "^5.14.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
