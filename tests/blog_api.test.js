@@ -15,6 +15,15 @@ test("all blogs are returned as json", async () => {
   expect(res.body.length).toEqual(helper.initialBlogs.length);
 });
 
+test("blogs have field id", async () => {
+  const res = await api
+    .get("/api/blogs")
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+
+  expect(res.body[0].id).toBeDefined();
+});
+
 beforeEach(async () => {
   await Blog.deleteMany({});
 
