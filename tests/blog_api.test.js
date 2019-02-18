@@ -15,6 +15,23 @@ test("all blogs are returned as json", async () => {
   expect(res.body.length).toEqual(helper.initialBlogs.length);
 });
 
+describe("when deleting a blog", async () => {
+  test("if it exists its deleted", async () => {
+    let blogs = await helper.blogsInDb();
+    const toBeDeletedBlog = blogs[0];
+    await api.delete("/api/blogs/" + toBeDeletedBlog.id).expect(204);
+    blogs = await helper.blogsInDb();
+    expect(blogs.length).toEqual(helper.initialBlogs.length - 1);
+    expect(blogs.map(blog => blog.id)).not.toContain(toBeDeletedBlog.id);
+  });
+  test("if it doesn't exist get 404 and nothing is deleted", async () => {
+    const id = await helper.nonExistingId();
+    await api.delete("/api/blogs" + id).expect(404);
+    let blogs = await helper.blogsInDb();
+    expect(blogs.length).toBe(helper.initialBlogs.length);
+  });
+});
+
 test("post adds one blog to db", async () => {
   const newBlog = {
     title: "new blog",

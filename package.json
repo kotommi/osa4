@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "watch": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "line": "eslint ."
+    "lint": "eslint ."
   },
   "author": "tomko",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "mongoose": "^5.4.11"
   },
   "devDependencies": {
+    "eslint": "^5.14.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
     "supertest": "^3.4.2"
