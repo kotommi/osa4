@@ -13,7 +13,7 @@ describe("total likes", () => {
   });
 });
 
-describe("most likes", () => {
+describe("favorite blog", () => {
   test("when list has only one blog returns that", () => {
     expect(listHelper.favoriteBlog(listWithOneBlog)).toEqual(
       listWithOneBlog[0]
@@ -38,6 +38,21 @@ describe("most blogs", () => {
     expect(listHelper.mostBlogs(blogs)).toEqual({
       author: "Robert C. Martin",
       blogs: 3
+    });
+  });
+});
+
+describe("most likes", () => {
+  test("when list has one blog return that one", () => {
+    expect(listHelper.mostLikes(listWithOneBlog)).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 5
+    });
+  });
+  test("when list has many blogs return the one with most total likes", () => {
+    expect(listHelper.mostLikes(blogs)).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 17
     });
   });
 });

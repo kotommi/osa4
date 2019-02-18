@@ -39,8 +39,32 @@ const mostBlogs = blogs => {
   };
 };
 
+const mostLikes = blogs => {
+  const dict = {};
+  for (b of blogs) {
+    if (dict[b.author]) {
+      dict[b.author] += b.likes;
+    } else {
+      dict[b.author] = b.likes;
+    }
+  }
+  let author = 0;
+  let likes = 0;
+  for (key in dict) {
+    if (dict[key] > likes) {
+      likes = dict[key];
+      author = key;
+    }
+  }
+  return {
+    author: author,
+    likes: likes
+  };
+};
+
 module.exports = {
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 };
