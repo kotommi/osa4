@@ -45,6 +45,40 @@ describe("when there is initially one user at db", async () => {
     const usernames = usersAtEnd.map(u => u.username);
     expect(usernames).toContain(newUser.username);
   });
+
+  test("creation fails with short username", async () => {
+    const shortUser = {
+      username: "xd",
+      password: "bepis"
+    };
+    const res = await api
+      .post("/api/users")
+      .send(shortUser)
+      .expect(400);
+    expect(res.body.error).toBeDefined();
+  });
+  test("creation fails with short password", async () => {
+    const shortUser = {
+      username: "losername",
+      password: "42"
+    };
+    const res = await api
+      .post("/api/users")
+      .send(shortUser)
+      .expect(400);
+    expect(res.body.error).toBeDefined();
+  });
+  test("creation fails with duplicate username", async () => {
+    const shortUser = {
+      username: "root",
+      password: "bepis"
+    };
+    const res = await api
+      .post("/api/users")
+      .send(shortUser)
+      .expect(400);
+    expect(res.body.error).toBeDefined();
+  });
 });
 
 afterAll(() => {
