@@ -31,6 +31,20 @@ test("post adds one blog to db", async () => {
   expect(blogs.slice(-1)[0].title).toEqual(newBlog.title);
 });
 
+test("post handles missing likes field", async () => {
+  const newBlog = {
+    title: "new blog",
+    author: "tomko",
+    url: "www.github.com"
+  };
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201);
+  const savedBlogs = await helper.blogsInDb();
+  expect(savedBlogs.slice(-1)[0].likes).toBe(0);
+});
+
 test("blogs have field id", async () => {
   const res = await api
     .get("/api/blogs")
