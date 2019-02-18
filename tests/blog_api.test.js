@@ -45,6 +45,16 @@ test("post handles missing likes field", async () => {
   expect(savedBlogs.slice(-1)[0].likes).toBe(0);
 });
 
+test("post responds with 400 if title or url is missing", async () => {
+  const faultyBlog = {
+    title: "asd"
+  };
+  const res = await api
+    .post("/api/blogs")
+    .send(faultyBlog)
+    .expect(400);
+});
+
 test("blogs have field id", async () => {
   const res = await api
     .get("/api/blogs")
