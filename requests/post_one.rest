@@ -1,8 +1,9 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpIiwiaWQiOiI1YzZiMWViMzZjMDg2YzA3ZTUyYmFkZmYiLCJpYXQiOjE1NTA1MjQ3Mzl9.2myE1VC_bcjeHWMILRJE7ct7AGOra6rcGU507a1j0Uo
 
 {
-    "title": "Devilish blog",
+    "title": "Ticklish blog",
     "author": "Not satan",
     "url": "www.he.ll",
     "likes": "9991"
