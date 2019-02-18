@@ -32,6 +32,27 @@ describe("when deleting a blog", async () => {
   });
 });
 
+describe("when editing a blog", async () => {
+  test("if it doesn't exist return 404", async () => {
+    const id = await helper.nonExistingId();
+    const blog = {
+      likes: 42
+    };
+    await api
+      .put("/api/blogs/" + id)
+      .send(blog)
+      .expect(404);
+  });
+  test("it changes on the database", async () => {
+    const blags = await helper.blogsInDb();
+    const changeBlog = blags[0];
+    changeBlog.likes = 42;
+    const res = await api.put("/api/blogs/" + changeBlog.id).send(changeBlog);
+    const blogs = await helper.blogsInDb();
+    expect(blogs[0].likes).toBe(42);
+  });
+});
+
 test("post adds one blog to db", async () => {
   const newBlog = {
     title: "new blog",
