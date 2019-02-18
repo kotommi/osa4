@@ -55,7 +55,11 @@ describe("when there is initially one user at db", async () => {
       .post("/api/users")
       .send(shortUser)
       .expect(400);
-    expect(res.body.error).toBeDefined();
+    expect(res.body.error).toMatch(
+      `Path \`username\` (\`${
+        shortUser.username
+      }\`) is shorter than the minimum allowed length (3).`
+    );
   });
   test("creation fails with short password", async () => {
     const shortUser = {
@@ -66,7 +70,8 @@ describe("when there is initially one user at db", async () => {
       .post("/api/users")
       .send(shortUser)
       .expect(400);
-    expect(res.body.error).toBeDefined();
+
+    expect(res.body.error).toMatch("password too short");
   });
   test("creation fails with duplicate username", async () => {
     const shortUser = {
@@ -77,7 +82,8 @@ describe("when there is initially one user at db", async () => {
       .post("/api/users")
       .send(shortUser)
       .expect(400);
-    expect(res.body.error).toBeDefined();
+
+    expect(res.body.error).toMatch("expected `username` to be unique");
   });
 });
 
