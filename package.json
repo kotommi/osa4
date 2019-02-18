@@ -24,6 +24,7 @@
     "acorn": "^6.1.0",
     "eslint": "^5.14.0",
     "jest": "^24.1.0",
+    "mongoose-unique-validator": "^2.0.2",
     "nodemon": "^1.18.10",
     "supertest": "^3.4.2"
   },

@@ -6,6 +6,10 @@ usersRouter.post("/", async (request, response, next) => {
   try {
     const body = request.body;
 
+    if (body.password === undefined || body.password.length < 3) {
+      return status(400).json({ message: "password too short" });
+    }
+
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
@@ -17,8 +21,7 @@ usersRouter.post("/", async (request, response, next) => {
     const savedUser = await user.save();
     return response.status(200).json(savedUser);
   } catch (e) {
-    console.log(e.message);
-    return status(400).end();
+    next(e);
   }
 });
 
@@ -27,7 +30,7 @@ usersRouter.get("/", async (request, response, next) => {
     const users = await User.find({});
     return response.json(users.map(u => u.toJSON())).end();
   } catch (e) {
-    response.status(400).end();
+    next(e);
   }
 });
 
