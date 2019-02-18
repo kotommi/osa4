@@ -4,6 +4,6 @@ Content-Type: application/json
 {
     "title": "Devilish blog",
     "author": "Not satan",
-    "jotain": "www.he.ll",
+    "url": "www.he.ll",
     "likes": "9991"
 }
